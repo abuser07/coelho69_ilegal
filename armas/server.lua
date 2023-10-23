@@ -4,7 +4,7 @@ local Tools = module("vrp","lib/Tools")
 vRP = Proxy.getInterface("vRP")
 vRPclient = Tunnel.getInterface("vRP")
 
-Drog = {}
+Armas = {}
 Tunnel.bindInterface("coelho69_ilegal",Armas)
 local idgens = Tools.newIDGenerator()
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -47,24 +47,24 @@ function Armas.checkPayment()
 			TriggerClientEvent("Notify",source,"negado","Número insuficiente de armas.")
 		else
 			local policia = vRP.getUsersByPermission("policia.permissao")
-			local valorDroga = math.random(1000,1200) 
+			local valorArmasa = math.random(1000,1200) 
 				if #policia < 2 then 
-					valorDroga = math.random(60000,80000) 
+					valorArmasa = math.random(60000,80000) 
 				elseif #policia >= 2 then
-					valorDroga = math.random(70000,90000) 
+					valorArmasa = math.random(70000,90000) 
 				elseif #policia >= 4 then
-					valorDroga = math.random(100000,120000) 
+					valorArmasa = math.random(100000,120000) 
 				elseif #policia >= 6 then
-					valorDroga = math.random(140000,170000)
+					valorArmasa = math.random(140000,170000)
 				elseif #policia >= 8 then
-					valorDroga = math.random(200000,240000)
+					valorArmasa = math.random(200000,240000)
 				end 
 
 			local totalPagamento = 0
 			if vRP.getInventoryItemAmount(user_id, 'WEAPON_ASSAULTRIFLE_MK2') >= quantidade[source] then
 				if vRP.tryGetInventoryItem(user_id,"WEAPON_ASSAULTRIFLE_MK2",quantidade[source]) then
 					total = parseInt(quantidade[source])
-					pagamento[source] = valorDroga * total * 1.50
+					pagamento[source] = valorArmasa * total * 1.50
 					totalPagamento = totalPagamento + pagamento[source]
 					TriggerClientEvent("vrp_sound:source",source,'coins',0.5)
 					vRPclient._playAnim(source, true, {{"mp_common","givetake1_a"}}, false)
@@ -73,7 +73,7 @@ function Armas.checkPayment()
 			if vRP.getInventoryItemAmount(user_id, 'WEAPON_SPECIALCARBINE_MK2') >= quantidade[source] then
 				if vRP.tryGetInventoryItem(user_id,"WEAPON_SPECIALCARBINE_MK2",quantidade[source]) then
 					total = parseInt(quantidade[source])
-					pagamento[source] = valorDroga * total * 1.50
+					pagamento[source] = valorArmasa * total * 1.50
 					totalPagamento = totalPagamento + pagamento[source]
 					TriggerClientEvent("vrp_sound:source",source,'coins',0.5)
 					vRPclient._playAnim(source, true, {{"mp_common","givetake1_a"}}, false)
@@ -83,7 +83,7 @@ function Armas.checkPayment()
 			if vRP.getInventoryItemAmount(user_id, 'WEAPON_MACHINEPISTOL') >= quantidade[source] then
 				if vRP.tryGetInventoryItem(user_id,"WEAPON_MACHINEPISTOL",quantidade[source]) then
 					total = parseInt(quantidade[source])
-					pagamento[source] = valorDroga * total * 1.25
+					pagamento[source] = valorArmasa * total * 1.25
 					totalPagamento = totalPagamento + pagamento[source]
 					TriggerClientEvent("vrp_sound:source",source,'coins',0.5)
 					vRPclient._playAnim(source, true, {{"mp_common","givetake1_a"}}, false)
@@ -93,7 +93,7 @@ function Armas.checkPayment()
 			if vRP.getInventoryItemAmount(user_id, 'WEAPON_ASSAULTSMG') >= quantidade[source] then
 				if vRP.tryGetInventoryItem(user_id,"WEAPON_ASSAULTSMG",quantidade[source]) then
 					total = parseInt(quantidade[source])
-					pagamento[source] = valorDroga * total * 1.25
+					pagamento[source] = valorArmasa * total * 1.25
 					totalPagamento = totalPagamento + pagamento[source]
 					TriggerClientEvent("vrp_sound:source",source,'coins',0.5)
 					vRPclient._playAnim(source, true, {{"mp_common","givetake1_a"}}, false)
@@ -103,7 +103,7 @@ function Armas.checkPayment()
 			if vRP.getInventoryItemAmount(user_id, 'WEAPON_COMBATPISTOL') >= quantidade[source] then
 				if vRP.tryGetInventoryItem(user_id,"WEAPON_COMBATPISTOL",quantidade[source]) then
 					total = parseInt(quantidade[source])
-					pagamento[source] = valorDroga * total
+					pagamento[source] = valorArmasa * total
 					totalPagamento = totalPagamento + pagamento[source]
 					TriggerClientEvent("vrp_sound:source",source,'coins',0.5)
 					vRPclient._playAnim(source, true, {{"mp_common","givetake1_a"}}, false)
@@ -113,7 +113,7 @@ function Armas.checkPayment()
 			if vRP.getInventoryItemAmount(user_id, 'WEAPON_PISTOL_MK2') >= quantidade[source] then
 				if vRP.tryGetInventoryItem(user_id,"WEAPON_PISTOL_MK2",quantidade[source]) then
 					total = parseInt(quantidade[source])
-					pagamento[source] = valorDroga * total
+					pagamento[source] = valorArmasa * total
 					totalPagamento = totalPagamento + pagamento[source]
 					TriggerClientEvent("vrp_sound:source",source,'coins',0.5)
 					vRPclient._playAnim(source, true, {{"mp_common","givetake1_a"}}, false)
