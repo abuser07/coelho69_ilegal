@@ -5,7 +5,7 @@ vRP = Proxy.getInterface("vRP")
 vRPclient = Tunnel.getInterface("vRP")
 
 Drog = {}
-Tunnel.bindInterface("drogas",Drog)
+Tunnel.bindInterface("coelho69_ilegal",Armas)
 local idgens = Tools.newIDGenerator()
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- WEBHOOK
@@ -25,7 +25,7 @@ local total = 0
 
 local quantidade = {}
 
-function Drog.Quantidade()
+function Armas.Quantidade()
 	local source = source
 
 	if quantidade[source] == nil then
@@ -38,7 +38,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- FUNÇÕES
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Drog.checkPayment()
+function Armas.checkPayment()
 	local source = source
 	local user_id = vRP.getUserId(source)
 	local identity = vRP.getUserIdentity(user_id)	
@@ -147,7 +147,7 @@ end
 -- POLICIA
 -----------------------------------------------------------------------------------------------------------------------------------------
 local blips = {}
-function Drog.MarcarOcorrencia()
+function Armas.MarcarOcorrencia()
 	local source = source
 	local user_id = vRP.getUserId(source)
 	local x,y,z = vRPclient.getPosition(source)

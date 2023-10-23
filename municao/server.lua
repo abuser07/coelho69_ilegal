@@ -5,7 +5,7 @@ vRP = Proxy.getInterface("vRP")
 vRPclient = Tunnel.getInterface("vRP")
 
 Drog = {}
-Tunnel.bindInterface("drogas",Drog)
+Tunnel.bindInterface("coelho69_ilegal",Drog)
 local idgens = Tools.newIDGenerator()
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- WEBHOOK

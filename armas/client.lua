@@ -1,6 +1,6 @@
 local Tunnel = module("vrp", "lib/Tunnel")
 local Proxy = module("vrp", "lib/Proxy")
-Drog = Tunnel.getInterface("drogas")
+Drog = Tunnel.getInterface("coelho69_ilegal")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- VARIÁVEIS
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -67,7 +67,7 @@ Citizen.CreateThread(function()
 							entregando = true
 							selecionado = math.random(#locs)
 							CriandoBlipDroga(locs,selecionado)
-							Drog.Quantidade()
+							Armas.Quantidade()
 						end
 					end
 				end
@@ -101,11 +101,11 @@ Citizen.CreateThread(function()
 				if distance <= 1.2 then
 					if IsControlJustPressed(0,38) then
 						droga = CreateObject(GetHashKey("prop_weed_block_01"),locs[selecionado].x,locs[selecionado].y,locs[selecionado].z-1,true,true,true)
-						if Drog.checkPayment() then
+						if Armas.checkPayment() then
 						
 							local random = math.random(100)
 							if random >= 60 then
-								Drog.MarcarOcorrencia()
+								Armas.MarcarOcorrencia()
 							end
 							RemoveBlip(blips)
 							backentrega = selecionado
@@ -119,7 +119,7 @@ Citizen.CreateThread(function()
 								Citizen.Wait(1)
 							end
 							CriandoBlipDroga(locs,selecionado)
-							Drog.Quantidade()
+							Armas.Quantidade()
 						end
 					end
 				end
