@@ -10,13 +10,7 @@ local selecionado = 0
 local quantidade = 0
 
 local pontos = {
-	{118.83, -1950.47, 20.75}, --BARRAGEM AREA1 CHECADO
-	{1317.45, -710.65, 65.34} , -- HELIPA AREA 2 CHECADO
-	--{1305.74, -2565.37, 46.4}, -- PETROLIO AREA 3 CHECADO
-	{1836.72, -1037.37, 79.23}, --FBI AREA 7 CHECADO
-	{-2428.36, 2830.68, 3.969}, --ZANCUDO AREA 6 CHECADO
---	{-3060.41, 1713.22, 36.292},--PRAIA AREA 6 CHECADO
-	{-2518.65, 1870.86, 172.02} --FRANÇA AREA 5 CHECADO
+	{1249.4, -3007.53, 9.32}
 }
 
 local locs = {
@@ -62,7 +56,7 @@ Citizen.CreateThread(function()
 				timedistance = 4
 				if not entregando then
 					if distance <= 1.2 then
-						DrawText3D(x,y,z, "~g~E~w~ PARA INICIAR AS ~g~ENTREGAS DE DROGAS")
+						DrawText3D(x,y,z, "~g~E~w~ PARA INICIAR AS ~g~ENTREGAS DE armas")
 						if IsControlJustPressed(0,38) then
 							entregando = true
 							selecionado = math.random(#locs)
@@ -79,8 +73,8 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 --[ STATUS ]-----------------------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------------------------------
-RegisterNetEvent("quantidade-drogas")
-AddEventHandler("quantidade-drogas",function(status)
+RegisterNetEvent("quantidade-armas")
+AddEventHandler("quantidade-armas",function(status)
     quantidade = status
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -127,7 +121,7 @@ Citizen.CreateThread(function()
 
 			if entregando then
 				drawTxt("PRESSIONE ~g~F7 ~w~PARA FINALIZAR A ROTA",4,0.260,0.905,0.5,255,255,255,200)
-				drawTxt("VÁ ATÉ O DESTINO ENTREGUE ~g~"..quantidade.."x~w~ DROGAS",4,0.260,0.929,0.5,255,255,255,200)
+				drawTxt("VÁ ATÉ O DESTINO ENTREGUE ~g~"..quantidade.."x~w~ armas",4,0.260,0.929,0.5,255,255,255,200)
 			  end
 			  
 			if IsControlJustPressed(0,168) then
@@ -177,7 +171,7 @@ function CriandoBlipDroga(locs,selecionado)
 	SetBlipAsShortRange(blips,false)
 	SetBlipRoute(blips,true)
 	BeginTextCommandSetBlipName("STRING")
-	AddTextComponentString("Entrega de drogas")
+	AddTextComponentString("Entrega de armas")
 	EndTextCommandSetBlipName(blips)
 end
 

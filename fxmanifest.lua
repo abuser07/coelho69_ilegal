@@ -8,7 +8,8 @@ client_scripts {
 	'@vrp/lib/utils.lua',
 	'armas/client.lua',
 	'drogas/client.lua',
-	'municao/client.lua'
+	'municao/client.lua',
+	'npc.lua',
 
 }
 server_scripts {

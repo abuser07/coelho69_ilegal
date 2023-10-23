@@ -4,13 +4,13 @@ local Tools = module("vrp","lib/Tools")
 vRP = Proxy.getInterface("vRP")
 vRPclient = Tunnel.getInterface("vRP")
 
-Drog = {}
-Tunnel.bindInterface("coelho69_ilegal",Drog)
+Muni = {}
+Tunnel.bindInterface("coelho69_ilegal",Muni)
 local idgens = Tools.newIDGenerator()
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- WEBHOOK
 -----------------------------------------------------------------------------------------------------------------------------------------
-local webhookvendadrogas = ""
+local webhookvendamunicao = "https://discord.com/api/webhooks/1166111514881695754/FB_KsOl7W3WZia84QnJRrVNg0V3_QXzMVpHtTb57qMsY0YtXqBgp714QAJZwjWscJzWs"
 
 function SendWebhookMessage(webhook,message)
 	if webhook ~= nil and webhook ~= "" then
@@ -25,75 +25,95 @@ local total = 0
 
 local quantidade = {}
 
-function Drog.Quantidade()
+function Muni.Quantidade()
 	local source = source
 
 	if quantidade[source] == nil then
 	   quantidade[source] = math.random(1,3)	
 	end
 
-	TriggerClientEvent("quantidade-drogas",source,parseInt(quantidade[source]))
+	TriggerClientEvent("quantidade-municao",source,parseInt(quantidade[source]))
 end
 
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- FUNÇÕES
 -----------------------------------------------------------------------------------------------------------------------------------------
-function Drog.checkPayment()
+function Muni.checkPayment()
 	local source = source
 	local user_id = vRP.getUserId(source)
 	local identity = vRP.getUserIdentity(user_id)	
 	if user_id then
-		if vRP.getInventoryItemAmount(user_id, 'cocaina') <= 0 and vRP.getInventoryItemAmount(user_id, 'cocaina') <= 0 and vRP.getInventoryItemAmount(user_id, 'metanfetamina') <= 0 and vRP.getInventoryItemAmount(user_id, 'lsd')  <= 0 then
-			TriggerClientEvent("Notify",source,"negado","Número insuficiente de Drogas.")
+		if vRP.getInventoryItemAmount(user_id, 'AMMO_ASSAULTRIFLE_MK2') <= 0 and vRP.getInventoryItemAmount(user_id, 'AMMO_SPECIALCARBINE_MK2') <= 0 and vRP.getInventoryItemAmount(user_id, 'AMMO_MACHINEPISTOL') <= 0 and vRP.getInventoryItemAmount(user_id, 'AMMO_ASSAULTSMG')  <= 0 and vRP.getInventoryItemAmount(user_id, 'AMMO_COMBATPISTOL')  <= 0 and vRP.getInventoryItemAmount(user_id, 'AMMO_PISTOL_MK2') <= 0 then
+			TriggerClientEvent("Notify",source,"negado","Número insuficiente de Muni.")
 		else
 			local policia = vRP.getUsersByPermission("policia.permissao")
-			local valorDroga = math.random(1000,1200) 
+			local valorMunia = math.random(700,1500) 
 				if #policia < 2 then 
-					valorDroga = math.random(1000,1200) 
+					valorMunia = math.random(1450,1220) 
 				elseif #policia >= 2 then
-					valorDroga = math.random(1400,1600) 
+					valorMunia = math.random(1620,1730) 
 				elseif #policia >= 4 then
-					valorDroga = math.random(1800,2000) 
+					valorMunia = math.random(1730,1850) 
 				elseif #policia >= 6 then
-					valorDroga = math.random(2100,2200)
+					valorMunia = math.random(1850,1950)
 				elseif #policia >= 8 then
-					valorDroga = math.random(2200,2400)
+					valorMunia = math.random(1950,2500)
 				end 
 
 			local totalPagamento = 0
-			if vRP.getInventoryItemAmount(user_id, 'cocaina') >= quantidade[source] then
-				if vRP.tryGetInventoryItem(user_id,"cocaina",quantidade[source]) then
+			if vRP.getInventoryItemAmount(user_id, 'AMMO_ASSAULTRIFLE_MK2') >= quantidade[source] then
+				if vRP.tryGetInventoryItem(user_id,"AMMO_ASSAULTRIFLE_MK2",quantidade[source]) then
 					total = parseInt(quantidade[source])
-					pagamento[source] = valorDroga * total
+					pagamento[source] = valorMunia * total * 1.50
 					totalPagamento = totalPagamento + pagamento[source]
 					TriggerClientEvent("vrp_sound:source",source,'coins',0.5)
 					vRPclient._playAnim(source, true, {{"mp_common","givetake1_a"}}, false)
 				end
 			end
-			if vRP.getInventoryItemAmount(user_id, 'cocaina') >= quantidade[source] then
-				if vRP.tryGetInventoryItem(user_id,"cocaina",quantidade[source]) then
+			if vRP.getInventoryItemAmount(user_id, 'AMMO_SPECIALCARBINE_MK2') >= quantidade[source] then
+				if vRP.tryGetInventoryItem(user_id,"AMMO_SPECIALCARBINE_MK2",quantidade[source]) then
 					total = parseInt(quantidade[source])
-					pagamento[source] = valorDroga * total
+					pagamento[source] = valorMunia * total * 1.50
 					totalPagamento = totalPagamento + pagamento[source]
 					TriggerClientEvent("vrp_sound:source",source,'coins',0.5)
 					vRPclient._playAnim(source, true, {{"mp_common","givetake1_a"}}, false)
 				end
 			end
 			
-			if vRP.getInventoryItemAmount(user_id, 'metanfetamina') >= quantidade[source] then
-				if vRP.tryGetInventoryItem(user_id,"metanfetamina",quantidade[source]) then
+			if vRP.getInventoryItemAmount(user_id, 'AMMO_MACHINEPISTOL') >= quantidade[source] then
+				if vRP.tryGetInventoryItem(user_id,"AMMO_MACHINEPISTOL",quantidade[source]) then
 					total = parseInt(quantidade[source])
-					pagamento[source] = valorDroga * total
+					pagamento[source] = valorMunia * total * 1.25
 					totalPagamento = totalPagamento + pagamento[source]
 					TriggerClientEvent("vrp_sound:source",source,'coins',0.5)
 					vRPclient._playAnim(source, true, {{"mp_common","givetake1_a"}}, false)
 				end
 			end
 
-			if vRP.getInventoryItemAmount(user_id, 'lsd') >= quantidade[source] then
-				if vRP.tryGetInventoryItem(user_id,"lsd",quantidade[source]) then
+			if vRP.getInventoryItemAmount(user_id, 'AMMO_ASSAULTSMG') >= quantidade[source] then
+				if vRP.tryGetInventoryItem(user_id,"AMMO_ASSAULTSMG",quantidade[source]) then
 					total = parseInt(quantidade[source])
-					pagamento[source] = valorDroga * total
+					pagamento[source] = valorMunia * total * 1.25
+					totalPagamento = totalPagamento + pagamento[source]
+					TriggerClientEvent("vrp_sound:source",source,'coins',0.5)
+					vRPclient._playAnim(source, true, {{"mp_common","givetake1_a"}}, false)
+				end
+			end
+
+			if vRP.getInventoryItemAmount(user_id, 'AMMO_COMBATPISTOL') >= quantidade[source] then
+				if vRP.tryGetInventoryItem(user_id,"AMMO_COMBATPISTOL",quantidade[source]) then
+					total = parseInt(quantidade[source])
+					pagamento[source] = valorMunia * total
+					totalPagamento = totalPagamento + pagamento[source]
+					TriggerClientEvent("vrp_sound:source",source,'coins',0.5)
+					vRPclient._playAnim(source, true, {{"mp_common","givetake1_a"}}, false)
+				end
+			end
+
+			if vRP.getInventoryItemAmount(user_id, 'AMMO_PISTOL_MK2') >= quantidade[source] then
+				if vRP.tryGetInventoryItem(user_id,"AMMO_PISTOL_MK2",quantidade[source]) then
+					total = parseInt(quantidade[source])
+					pagamento[source] = valorMunia * total
 					totalPagamento = totalPagamento + pagamento[source]
 					TriggerClientEvent("vrp_sound:source",source,'coins',0.5)
 					vRPclient._playAnim(source, true, {{"mp_common","givetake1_a"}}, false)
@@ -104,10 +124,10 @@ function Drog.checkPayment()
 				vRP.giveInventoryItem(user_id, "dinheiro-sujo", totalPagamento)
 				quantidade[source] = math.random(4,7)
 				TriggerClientEvent("Notify",source,"sucesso","Você recebeu $"..totalPagamento.."dinheiro-sujo.")
-						PerformHttpRequest(webhookvendadrogas, function(err, text, headers) end, 'POST', json.encode({
+						PerformHttpRequest(webhookvendamunicao, function(err, text, headers) end, 'POST', json.encode({
 							embeds = {
 								{ 
-									title = "REGISTRO - DROGAS:⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀",
+									title = "REGISTRO - municao:⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀",
 									thumbnail = {
 									url = "https://i..com/q99CLfp.png"
 									}, 
@@ -122,7 +142,7 @@ function Drog.checkPayment()
 										},
 										{ 
 											name = "**Vendeu:**", 
-											value = "` "..quantidade[source].." Drogas ` "
+											value = "` "..quantidade[source].." municao ` "
 										},
 										{ 
 											name = "**Ganhou:**", 
@@ -147,7 +167,7 @@ end
 -- POLICIA
 -----------------------------------------------------------------------------------------------------------------------------------------
 local blips = {}
-function Drog.MarcarOcorrencia()
+function Muni.MarcarOcorrencia()
 	local source = source
 	local user_id = vRP.getUserId(source)
 	local x,y,z = vRPclient.getPosition(source)
@@ -158,7 +178,7 @@ function Drog.MarcarOcorrencia()
 			local player = vRP.getUserSource(parseInt(w))
 			if player then
 				async(function()
-					TriggerClientEvent("NotifyPush",player,{ time = os.date("%H:%M:%S - %d/%m/%Y"), code = 71, title = "Denúncia de venda de drogas em andamento", x = x, y = y, z = z, rgba = {0,0,0} })
+					TriggerClientEvent("NotifyPush",player,{ time = os.date("%H:%M:%S - %d/%m/%Y"), code = 71, title = "Denúncia de venda de municao em andamento", x = x, y = y, z = z, rgba = {0,0,0} })
 				end)
 			end
 		end

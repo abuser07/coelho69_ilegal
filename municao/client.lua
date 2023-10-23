@@ -1,6 +1,6 @@
 local Tunnel = module("vrp", "lib/Tunnel")
 local Proxy = module("vrp", "lib/Proxy")
-Drog = Tunnel.getInterface("coelho69_ilegal")
+Muni= Tunnel.getInterface("coelho69_ilegal")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- VARIÁVEIS
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -10,13 +10,7 @@ local selecionado = 0
 local quantidade = 0
 
 local pontos = {
-	{118.83, -1950.47, 20.75}, --BARRAGEM AREA1 CHECADO
-	{1317.45, -710.65, 65.34} , -- HELIPA AREA 2 CHECADO
-	--{1305.74, -2565.37, 46.4}, -- PETROLIO AREA 3 CHECADO
-	{1836.72, -1037.37, 79.23}, --FBI AREA 7 CHECADO
-	{-2428.36, 2830.68, 3.969}, --ZANCUDO AREA 6 CHECADO
---	{-3060.41, 1713.22, 36.292},--PRAIA AREA 6 CHECADO
-	{-2518.65, 1870.86, 172.02} --FRANÇA AREA 5 CHECADO
+	{-207.99, -2363.99, 9.32}
 }
 
 local locs = {
@@ -62,12 +56,12 @@ Citizen.CreateThread(function()
 				timedistance = 4
 				if not entregando then
 					if distance <= 1.2 then
-						DrawText3D(x,y,z, "~g~E~w~ PARA INICIAR AS ~g~ENTREGAS DE DROGAS")
+						DrawText3D(x,y,z, "~g~E~w~ PARA INICIAR AS ~g~ENTREGAS DE municao")
 						if IsControlJustPressed(0,38) then
 							entregando = true
 							selecionado = math.random(#locs)
-							CriandoBlipDroga(locs,selecionado)
-							Drog.Quantidade()
+							CriandoBlipMuni(locs,selecionado)
+							MuniQuantidade()
 						end
 					end
 				end
@@ -79,8 +73,8 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 --[ STATUS ]-----------------------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------------------------------
-RegisterNetEvent("quantidade-drogas")
-AddEventHandler("quantidade-drogas",function(status)
+RegisterNetEvent("quantidade-municao")
+AddEventHandler("quantidade-municao",function(status)
     quantidade = status
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -100,12 +94,12 @@ Citizen.CreateThread(function()
 				DrawMarker(0,locs[selecionado].x,locs[selecionado].y,locs[selecionado].z-0.6,0,0,0,0.0,0,0,0.5,0.5,0.4,255,255,255,100,1,1,0,0)
 				if distance <= 1.2 then
 					if IsControlJustPressed(0,38) then
-						droga = CreateObject(GetHashKey("prop_weed_block_01"),locs[selecionado].x,locs[selecionado].y,locs[selecionado].z-1,true,true,true)
-						if Drog.checkPayment() then
+						Muni = CreateObject(GetHashKey("prop_weed_block_01"),locs[selecionado].x,locs[selecionado].y,locs[selecionado].z-1,true,true,true)
+						if MunicheckPayment() then
 						
 							local random = math.random(100)
 							if random >= 60 then
-								Drog.MarcarOcorrencia()
+								MuniMarcarOcorrencia()
 							end
 							RemoveBlip(blips)
 							backentrega = selecionado
@@ -118,8 +112,8 @@ Citizen.CreateThread(function()
 								end
 								Citizen.Wait(1)
 							end
-							CriandoBlipDroga(locs,selecionado)
-							Drog.Quantidade()
+							CriandoBlipMuni(locs,selecionado)
+							MuniQuantidade()
 						end
 					end
 				end
@@ -127,7 +121,7 @@ Citizen.CreateThread(function()
 
 			if entregando then
 				drawTxt("PRESSIONE ~g~F7 ~w~PARA FINALIZAR A ROTA",4,0.260,0.905,0.5,255,255,255,200)
-				drawTxt("VÁ ATÉ O DESTINO ENTREGUE ~g~"..quantidade.."x~w~ DROGAS",4,0.260,0.929,0.5,255,255,255,200)
+				drawTxt("VÁ ATÉ O DESTINO ENTREGUE ~g~"..quantidade.."x~w~ municao",4,0.260,0.929,0.5,255,255,255,200)
 			  end
 			  
 			if IsControlJustPressed(0,168) then
@@ -169,7 +163,7 @@ function DrawText3D(x,y,z, text)
     DrawRect(_x,_y+0.0125, 0.015+ factor, 0.03, 0, 0, 0, 50)
 end
 
-function CriandoBlipDroga(locs,selecionado)
+function CriandoBlipMuni(locs,selecionado)
 	blips = AddBlipForCoord(locs[selecionado].x,locs[selecionado].y,locs[selecionado].z)
 	SetBlipSprite(blips,162)
 	SetBlipColour(blips,5)
@@ -177,7 +171,7 @@ function CriandoBlipDroga(locs,selecionado)
 	SetBlipAsShortRange(blips,false)
 	SetBlipRoute(blips,true)
 	BeginTextCommandSetBlipName("STRING")
-	AddTextComponentString("Entrega de drogas")
+	AddTextComponentString("Entrega de municao")
 	EndTextCommandSetBlipName(blips)
 end
 
