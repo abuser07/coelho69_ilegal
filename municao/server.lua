@@ -4,13 +4,13 @@ local Tools = module("vrp","lib/Tools")
 vRP = Proxy.getInterface("vRP")
 vRPclient = Tunnel.getInterface("vRP")
 
-Muni = {}
-Tunnel.bindInterface("coelho69_ilegal",Muni)
+Drog = {}
+Tunnel.bindInterface("coelho69_ilegal",Drog)
 local idgens = Tools.newIDGenerator()
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- WEBHOOK
 -----------------------------------------------------------------------------------------------------------------------------------------
-local webhookvendamunicao = "https://discord.com/api/webhooks/1166111514881695754/FB_KsOl7W3WZia84QnJRrVNg0V3_QXzMVpHtTb57qMsY0YtXqBgp714QAJZwjWscJzWs"
+local webhookvendadrogas = "https://discord.com/api/webhooks/1166111514881695754/FB_KsOl7W3WZia84QnJRrVNg0V3_QXzMVpHtTb57qMsY0YtXqBgp714QAJZwjWscJzWs"
 
 function SendWebhookMessage(webhook,message)
 	if webhook ~= nil and webhook ~= "" then
@@ -25,14 +25,14 @@ local total = 0
 
 local quantidade = {}
 
-function Muni.Quantidade()
+function Drog.Quantidade()
 	local source = source
 
 	if quantidade[source] == nil then
 	   quantidade[source] = math.random(1,3)	
 	end
 
-	TriggerClientEvent("quantidade-municao",source,parseInt(quantidade[source]))
+	TriggerClientEvent("quantidade-drogas",source,parseInt(quantidade[source]))
 end
 
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -47,24 +47,24 @@ function Muni.checkPayment()
 			TriggerClientEvent("Notify",source,"negado","Número insuficiente de Muni.")
 		else
 			local policia = vRP.getUsersByPermission("policia.permissao")
-			local valorMunia = math.random(700,1500) 
+			local valorDroga = math.random(700,1500) 
 				if #policia < 2 then 
-					valorMunia = math.random(1450,1220) 
+					valorDroga = math.random(1450,1220) 
 				elseif #policia >= 2 then
-					valorMunia = math.random(1620,1730) 
+					valorDroga = math.random(1620,1730) 
 				elseif #policia >= 4 then
-					valorMunia = math.random(1730,1850) 
+					valorDroga = math.random(1730,1850) 
 				elseif #policia >= 6 then
-					valorMunia = math.random(1850,1950)
+					valorDroga = math.random(1850,1950)
 				elseif #policia >= 8 then
-					valorMunia = math.random(1950,2500)
+					valorDroga = math.random(1950,2500)
 				end 
 
 			local totalPagamento = 0
 			if vRP.getInventoryItemAmount(user_id, 'AMMO_ASSAULTRIFLE_MK2') >= quantidade[source] then
 				if vRP.tryGetInventoryItem(user_id,"AMMO_ASSAULTRIFLE_MK2",quantidade[source]) then
 					total = parseInt(quantidade[source])
-					pagamento[source] = valorMunia * total * 1.50
+					pagamento[source] = valorDroga * total * 1.50
 					totalPagamento = totalPagamento + pagamento[source]
 					TriggerClientEvent("vrp_sound:source",source,'coins',0.5)
 					vRPclient._playAnim(source, true, {{"mp_common","givetake1_a"}}, false)
@@ -73,7 +73,7 @@ function Muni.checkPayment()
 			if vRP.getInventoryItemAmount(user_id, 'AMMO_SPECIALCARBINE_MK2') >= quantidade[source] then
 				if vRP.tryGetInventoryItem(user_id,"AMMO_SPECIALCARBINE_MK2",quantidade[source]) then
 					total = parseInt(quantidade[source])
-					pagamento[source] = valorMunia * total * 1.50
+					pagamento[source] = valorDroga * total * 1.50
 					totalPagamento = totalPagamento + pagamento[source]
 					TriggerClientEvent("vrp_sound:source",source,'coins',0.5)
 					vRPclient._playAnim(source, true, {{"mp_common","givetake1_a"}}, false)
@@ -83,7 +83,7 @@ function Muni.checkPayment()
 			if vRP.getInventoryItemAmount(user_id, 'AMMO_MACHINEPISTOL') >= quantidade[source] then
 				if vRP.tryGetInventoryItem(user_id,"AMMO_MACHINEPISTOL",quantidade[source]) then
 					total = parseInt(quantidade[source])
-					pagamento[source] = valorMunia * total * 1.25
+					pagamento[source] = valorDroga * total * 1.25
 					totalPagamento = totalPagamento + pagamento[source]
 					TriggerClientEvent("vrp_sound:source",source,'coins',0.5)
 					vRPclient._playAnim(source, true, {{"mp_common","givetake1_a"}}, false)
@@ -93,7 +93,7 @@ function Muni.checkPayment()
 			if vRP.getInventoryItemAmount(user_id, 'AMMO_ASSAULTSMG') >= quantidade[source] then
 				if vRP.tryGetInventoryItem(user_id,"AMMO_ASSAULTSMG",quantidade[source]) then
 					total = parseInt(quantidade[source])
-					pagamento[source] = valorMunia * total * 1.25
+					pagamento[source] = valorDroga * total * 1.25
 					totalPagamento = totalPagamento + pagamento[source]
 					TriggerClientEvent("vrp_sound:source",source,'coins',0.5)
 					vRPclient._playAnim(source, true, {{"mp_common","givetake1_a"}}, false)
@@ -103,7 +103,7 @@ function Muni.checkPayment()
 			if vRP.getInventoryItemAmount(user_id, 'AMMO_COMBATPISTOL') >= quantidade[source] then
 				if vRP.tryGetInventoryItem(user_id,"AMMO_COMBATPISTOL",quantidade[source]) then
 					total = parseInt(quantidade[source])
-					pagamento[source] = valorMunia * total
+					pagamento[source] = valorDroga * total
 					totalPagamento = totalPagamento + pagamento[source]
 					TriggerClientEvent("vrp_sound:source",source,'coins',0.5)
 					vRPclient._playAnim(source, true, {{"mp_common","givetake1_a"}}, false)
@@ -113,7 +113,7 @@ function Muni.checkPayment()
 			if vRP.getInventoryItemAmount(user_id, 'AMMO_PISTOL_MK2') >= quantidade[source] then
 				if vRP.tryGetInventoryItem(user_id,"AMMO_PISTOL_MK2",quantidade[source]) then
 					total = parseInt(quantidade[source])
-					pagamento[source] = valorMunia * total
+					pagamento[source] = valorDroga * total
 					totalPagamento = totalPagamento + pagamento[source]
 					TriggerClientEvent("vrp_sound:source",source,'coins',0.5)
 					vRPclient._playAnim(source, true, {{"mp_common","givetake1_a"}}, false)
@@ -167,7 +167,7 @@ end
 -- POLICIA
 -----------------------------------------------------------------------------------------------------------------------------------------
 local blips = {}
-function Muni.MarcarOcorrencia()
+function Drog.MarcarOcorrencia()
 	local source = source
 	local user_id = vRP.getUserId(source)
 	local x,y,z = vRPclient.getPosition(source)

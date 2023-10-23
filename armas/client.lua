@@ -56,12 +56,12 @@ Citizen.CreateThread(function()
 				timedistance = 4
 				if not entregando then
 					if distance <= 1.2 then
-						DrawText3D(x,y,z, "~g~E~w~ PARA INICIAR AS ~g~ENTREGAS DE armas")
+						DrawText3D(x,y,z, "~g~E~w~ PARA INICIAR AS ~g~ENTREGAS DE DROGAS")
 						if IsControlJustPressed(0,38) then
 							entregando = true
 							selecionado = math.random(#locs)
 							CriandoBlipDroga(locs,selecionado)
-							Armas.Quantidade()
+							Drog.Quantidade()
 						end
 					end
 				end
@@ -73,8 +73,8 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 --[ STATUS ]-----------------------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------------------------------
-RegisterNetEvent("quantidade-armas")
-AddEventHandler("quantidade-armas",function(status)
+RegisterNetEvent("quantidade-drogas")
+AddEventHandler("quantidade-drogas",function(status)
     quantidade = status
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -95,11 +95,11 @@ Citizen.CreateThread(function()
 				if distance <= 1.2 then
 					if IsControlJustPressed(0,38) then
 						droga = CreateObject(GetHashKey("prop_weed_block_01"),locs[selecionado].x,locs[selecionado].y,locs[selecionado].z-1,true,true,true)
-						if Armas.checkPayment() then
+						if Drog.checkPayment() then
 						
 							local random = math.random(100)
 							if random >= 60 then
-								Armas.MarcarOcorrencia()
+								Drog.MarcarOcorrencia()
 							end
 							RemoveBlip(blips)
 							backentrega = selecionado
@@ -113,7 +113,7 @@ Citizen.CreateThread(function()
 								Citizen.Wait(1)
 							end
 							CriandoBlipDroga(locs,selecionado)
-							Armas.Quantidade()
+							Drog.Quantidade()
 						end
 					end
 				end
@@ -121,7 +121,7 @@ Citizen.CreateThread(function()
 
 			if entregando then
 				drawTxt("PRESSIONE ~g~F7 ~w~PARA FINALIZAR A ROTA",4,0.260,0.905,0.5,255,255,255,200)
-				drawTxt("VÁ ATÉ O DESTINO ENTREGUE ~g~"..quantidade.."x~w~ armas",4,0.260,0.929,0.5,255,255,255,200)
+				drawTxt("VÁ ATÉ O DESTINO ENTREGUE ~g~"..quantidade.."x~w~ ARMAS",4,0.260,0.929,0.5,255,255,255,200)
 			  end
 			  
 			if IsControlJustPressed(0,168) then
@@ -171,9 +171,6 @@ function CriandoBlipDroga(locs,selecionado)
 	SetBlipAsShortRange(blips,false)
 	SetBlipRoute(blips,true)
 	BeginTextCommandSetBlipName("STRING")
-	AddTextComponentString("Entrega de armas")
+	AddTextComponentString("Entrega de drogas")
 	EndTextCommandSetBlipName(blips)
 end
-
-
-
